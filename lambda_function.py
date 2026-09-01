@@ -194,6 +194,7 @@ def handle_login(event, context):
             AuthParameters={
                 'USERNAME': email,
                 'PASSWORD': password,
+                'SECRET_HASH': get_secret_hash(email, CLIENT_ID, CLIENT_SECRET)
             }
         )
 
