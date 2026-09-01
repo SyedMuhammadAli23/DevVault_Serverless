@@ -113,9 +113,13 @@ def handle_signup(event, context):
         body = json.loads(event.get('body', '{}'))
         email = body.get('email')
         password = body.get('password')
+        birthdate = body.get('birthdate')
+        phone_number = body.get('phone_number')
+        name = body.get('name')
 
-        if not email or not password:
-            return response(400, {'message': 'Email and password required'}, is_error=True)
+
+        if not all([email, password, birthdate, phone_number, name]):
+            return response(400, {'message': 'All fields are required'}, is_error=True)
 
         # Sign up user with Cognito
         response_data = cognito.sign_up(
@@ -124,6 +128,9 @@ def handle_signup(event, context):
             Password=password,
             UserAttributes=[
                 {'Name': 'email', 'Value': email},
+                {'Name': 'birthdate', 'Value': birthdate},
+                {'Name': 'phone_number', 'Value': phone_number},
+                {'Name': 'name', 'Value': name}
             ],
             SecretHash=get_secret_hash(email, CLIENT_ID, CLIENT_SECRET)
         )
