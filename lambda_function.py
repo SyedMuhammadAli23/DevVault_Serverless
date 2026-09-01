@@ -124,7 +124,6 @@ def handle_signup(event, context):
             Password=password,
             UserAttributes=[
                 {'Name': 'email', 'Value': email},
-                {'Name': 'email_verified', 'Value': 'false'}
             ],
             SecretHash=get_secret_hash(email, CLIENT_ID, CLIENT_SECRET)
         )
