@@ -162,6 +162,8 @@ async function handleVerification(e) {
     } catch (error) {
         console.error('Verification error:', error);
         showError('verification', error.message);
+    } finally {
+        restoreLoading('verification');
     }
 }
 
@@ -224,6 +226,8 @@ async function loginWithCredentials(email, password) {
         console.error('Login error:', error);
         showError('login', error.message);
         throw error;
+    } finally {
+        restoreLoading('login');
     }
 }
 
