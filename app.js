@@ -13,7 +13,7 @@ const CONFIG = {
     },
     // API Gateway Configuration
     api: {
-        endpoint: 'https://xxxxxxx.execute-api.us-east-1.amazonaws.com/prod', // Replace with your API endpoint
+        endpoint: 'https://m9oe1oadw9.execute-api.ap-south-1.amazonaws.com/prod',
         region: 'ap-south-1',
     },
     // Cognito Hosted UI (if using Cognito Hosted UI for login)
