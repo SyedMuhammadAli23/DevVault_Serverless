@@ -3,18 +3,18 @@
 // AWS Cognito + API Gateway Integration
 // ============================================
 
-// Configuration - REPLACE WITH YOUR VALUES
+// Configuration - PUBLIC VALUES ONLY (no secrets exposed)
 const CONFIG = {
-    // AWS Cognito Configuration
+    // AWS Cognito Configuration (Public - safe to expose in frontend)
     cognito: {
-        userPoolId: 'us-east-1_XXXXXXXXX',          // Replace with your User Pool ID
-        clientId: 'XXXXXXXXXXXXXXXXXXXXXXXX',        // Replace with your Client ID
-        region: 'us-east-1',                         // Replace with your region
+        userPoolId: 'ap-south-1_bnMcGRdEV',         // User Pool ID from AWS
+        clientId: '602b1v5b4unceh2n1fts3o0eoc',     // Client ID from AWS
+        region: 'ap-south-1',                        // AWS Region
     },
     // API Gateway Configuration
     api: {
         endpoint: 'https://xxxxxxx.execute-api.us-east-1.amazonaws.com/prod', // Replace with your API endpoint
-        region: 'us-east-1',
+        region: 'ap-south-1',
     },
     // Cognito Hosted UI (if using Cognito Hosted UI for login)
     hostedUIConfig: {
