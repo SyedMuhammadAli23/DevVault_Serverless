@@ -18,12 +18,30 @@
     box-sizing: border-box;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     color: #e2e8f0;
     background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
     min-height: 100vh;
     line-height: 1.6;
+}
+
+/* Auth Container - Full viewport centered */
+#authContainer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%) !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Smooth transitions */
@@ -37,7 +55,7 @@ button {
 }
 
 button:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
 }
 
 input:focus, textarea:focus, select:focus {
@@ -82,10 +100,61 @@ input:focus, textarea:focus, select:focus {
     animation: fadeIn 0.4s ease-out;
 }
 
+/* Glassmorphism Auth Cards */
+#authContainer > div {
+    animation: slideIn 0.5s ease-out;
+}
+
+#authContainer > div > div {
+    background: rgba(30, 41, 59, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(71, 85, 105, 0.5) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+#authContainer > div > div:hover {
+    border-color: rgba(71, 85, 105, 0.7);
+}
+
+/* Enhanced Input Fields with Icon Support */
+input[type="email"],
+input[type="password"],
+input[type="text"],
+textarea,
+select {
+    background-color: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    background-color: rgba(30, 41, 59, 0.7);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: rgba(148, 163, 184, 0.6);
+}
+
+/* Icon styling for inputs */
+input[type="email"],
+input[type="password"] {
+    padding-left: 2.75rem;
+}
+
 /* Item Cards - Enhanced */
 .item-card {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border: 1.5px solid #334155;
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(71, 85, 105, 0.3);
     border-radius: 1rem;
     padding: 1.75rem;
     transition: all 0.4s ease;
@@ -99,7 +168,7 @@ input:focus, textarea:focus, select:focus {
     border-color: #3b82f6;
     box-shadow: 0 10px 40px rgba(59, 130, 246, 0.25), 0 0 20px rgba(59, 130, 246, 0.15);
     transform: translateY(-8px);
-    background: linear-gradient(135deg, #1e3a50 0%, #162d42 100%);
+    background: rgba(30, 59, 80, 0.5);
 }
 
 .item-card h3 {
@@ -123,12 +192,10 @@ input:focus, textarea:focus, select:focus {
     letter-spacing: 0.05em;
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
-    text-transform: uppercase;
-}
 
 .item-card .code-preview {
-    background: #0a0f1f;
-    border: 1.5px solid #334155;
+    background: rgba(10, 15, 31, 0.8);
+    border: 1px solid rgba(71, 85, 105, 0.3);
     border-radius: 0.75rem;
     padding: 1rem;
     font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
@@ -140,7 +207,6 @@ input:focus, textarea:focus, select:focus {
     white-space: pre-wrap;
     word-break: break-word;
     line-height: 1.5;
-    background: linear-gradient(135deg, #0a0f1f, #0f172a);
 }
 
 .item-card .description {
@@ -193,22 +259,24 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Loading and status messages */
-.error-message {
+.error-message,
+[id*="Error"] {
     color: #fca5a5;
     font-size: 0.95rem;
     padding: 1rem;
     background-color: rgba(239, 68, 68, 0.15);
-    border: 1.5px solid rgba(239, 68, 68, 0.4);
+    border: 1px solid rgba(239, 68, 68, 0.4);
     border-radius: 0.75rem;
     animation: slideIn 0.3s ease-out;
 }
 
-.success-message {
+.success-message,
+[id*="Success"] {
     color: #86efac;
     font-size: 0.95rem;
     padding: 1rem;
     background-color: rgba(16, 185, 129, 0.15);
-    border: 1.5px solid rgba(16, 185, 129, 0.4);
+    border: 1px solid rgba(16, 185, 129, 0.4);
     border-radius: 0.75rem;
     animation: slideIn 0.3s ease-out;
 }
@@ -220,7 +288,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: rgba(15, 23, 42, 0.5);
     border-radius: 10px;
 }
 
@@ -238,16 +306,6 @@ input:focus, textarea:focus, select:focus {
 /* Modal enhancement */
 #editModal {
     backdrop-filter: blur(5px);
-}
-
-/* Form inputs enhanced */
-input, textarea, select {
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-input:focus, textarea:focus, select:focus {
-    transform: translateY(-2px);
 }
 
 /* Loading button state */
@@ -275,11 +333,6 @@ button:disabled {
     100% {
         transform: rotate(360deg);
     }
-}
-
-/* Modal overlay */
-#editModal.show {
-    display: flex;
 }
 
 /* Utility classes */
