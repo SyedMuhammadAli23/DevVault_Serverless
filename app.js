@@ -34,6 +34,11 @@ let authState = {
     isAuthenticated: false,
 };
 
+const passwordVisibility = {
+    signupPassword: false,
+    loginPassword: false,
+};
+
 // ============================================
 // Initialization
 // ============================================
@@ -70,6 +75,18 @@ function setupEventListeners() {
 
     // Edit Item
     document.getElementById('editItemForm').addEventListener('submit', handleEditItem);
+}
+
+function togglePasswordVisibility(fieldId, toggleButton) {
+    const passwordInput = document.getElementById(fieldId);
+    const isVisible = !passwordVisibility[fieldId];
+
+    passwordVisibility[fieldId] = isVisible;
+    passwordInput.type = isVisible ? 'text' : 'password';
+    toggleButton.setAttribute('aria-label', isVisible ? 'Hide password' : 'Show password');
+    toggleButton.setAttribute('title', isVisible ? 'Hide password' : 'Show password');
+    toggleButton.querySelector('[data-eye]').classList.toggle('hidden', isVisible);
+    toggleButton.querySelector('[data-eye-off]').classList.toggle('hidden', !isVisible);
 }
 
 // ============================================
