@@ -54,6 +54,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         authState.isAuthenticated = true;
         showDashboard();
         loadItems();
+    } else {
+        showAuthPage();
     }
 
     // Setup event listeners
@@ -215,10 +217,8 @@ async function loginWithCredentials(email, password) {
         localStorage.removeItem('signupPassword');
 
         showSuccess('login', 'Login successful!');
-        setTimeout(() => {
-            showDashboard();
-            loadItems();
-        }, 1000);
+        showDashboard();
+        loadItems();
 
     } catch (error) {
         console.error('Login error:', error);
@@ -429,15 +429,23 @@ async function deleteItem(itemId) {
 // ============================================
 
 function showAuthPage() {
+    authState.isAuthenticated = false;
     document.getElementById('authContainer').classList.remove('hidden');
     document.getElementById('dashboardContainer').classList.add('hidden');
     switchToLogin();
+    window.scrollTo(0, 0);
 }
 
 function showDashboard() {
+    if (!authState.isAuthenticated) {
+        showAuthPage();
+        return;
+    }
+
     document.getElementById('authContainer').classList.add('hidden');
     document.getElementById('dashboardContainer').classList.remove('hidden');
     document.getElementById('userEmail').textContent = authState.userEmail;
+    window.scrollTo(0, 0);
 }
 
 function switchToSignup() {
