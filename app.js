@@ -266,7 +266,7 @@ async function handleCreateItem(e) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authState.accessToken}`
+                'Authorization': `Bearer ${authState.idToken}`
             },
             body: JSON.stringify({
                 title,
@@ -299,7 +299,7 @@ async function loadItems() {
         const response = await fetch(`${CONFIG.api.endpoint}/items`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${authState.accessToken}`
+                'Authorization': `Bearer ${authState.idToken}`
             }
         });
 
@@ -312,6 +312,8 @@ async function loadItems() {
 
     } catch (error) {
         console.error('Load items error:', error);
+        restoreLoading('verification');
+        restoreLoading('login');
         document.getElementById('itemsList').innerHTML = '<p class="text-red-400">Error loading items</p>';
     }
 }
@@ -373,7 +375,7 @@ async function handleEditItem(e) {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authState.accessToken}`
+                'Authorization': `Bearer ${authState.idToken}`
             },
             body: JSON.stringify({
                 title,
@@ -406,7 +408,7 @@ async function deleteItem(itemId) {
         const response = await fetch(`${CONFIG.api.endpoint}/items/${itemId}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ${authState.accessToken}`
+                'Authorization': `Bearer ${authState.idToken}`
             }
         });
 
@@ -488,6 +490,14 @@ function showLoading(section) {
     if (button) {
         button.disabled = true;
         button.textContent = 'Loading...';
+    }
+}
+
+function restoreLoading(section) {
+    const button = document.querySelector(`#${section}Form button[type="submit"]`);
+    if (button) {
+        button.disabled = false;
+        button.textContent = section === 'login' ? 'Sign In' : 'Verify Email';
     }
 }
 
