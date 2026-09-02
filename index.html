@@ -7,101 +7,101 @@
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen">
+<body class="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 min-h-screen">
     <!-- Auth Container -->
-    <div id="authContainer" class="min-h-screen flex items-center justify-center px-4">
+    <div id="authContainer" class="min-h-screen flex items-center justify-center px-4 py-8">
         <!-- Sign Up View -->
-        <div id="signupView" class="w-full max-w-md">
-            <div class="bg-slate-800 rounded-lg shadow-2xl p-8 border border-slate-700">
-                <h1 class="text-3xl font-bold text-white mb-2">DevVault</h1>
-                <p class="text-slate-400 mb-6">Secure Code Snippet Manager</p>
+        <div id="signupView" class="w-full max-w-lg">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl p-10 border border-slate-700 backdrop-blur-sm">
+                <h1 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-2">DevVault</h1>
+                <p class="text-slate-300 mb-8 text-lg">Secure Code Snippet Manager</p>
                 
-                <form id="signupForm" class="space-y-4">
+                <form id="signupForm" class="space-y-5">
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Email</label>
-                        <input type="email" id="signupEmail" required class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" placeholder="your@email.com">
+                        <label class="block text-base font-medium text-slate-200 mb-3">Email Address</label>
+                        <input type="email" id="signupEmail" required class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all" placeholder="your@email.com">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Password</label>
-                        <input type="password" id="signupPassword" required class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" placeholder="••••••••">
+                        <label class="block text-base font-medium text-slate-200 mb-3">Password</label>
+                        <input type="password" id="signupPassword" required class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all" placeholder="••••••••">
                     </div>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition duration-200">Sign Up</button>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold py-3 rounded-xl transition-all duration-200 transform hover:scale-105 text-lg">Sign Up</button>
                 </form>
-                <p class="text-slate-400 text-sm mt-4 text-center">
-                    Already have an account? <a href="#" onclick="switchToLogin(); return false;" class="text-blue-400 hover:text-blue-300">Login</a>
+                <p class="text-slate-300 text-base mt-6 text-center">
+                    Already have an account? <a href="#" onclick="switchToLogin(); return false;" class="text-blue-400 hover:text-blue-300 font-semibold">Login</a>
                 </p>
-                <div id="signupError" class="text-red-400 text-sm mt-2 hidden"></div>
-                <div id="signupSuccess" class="text-green-400 text-sm mt-2 hidden"></div>
+                <div id="signupError" class="text-red-300 text-base mt-4 hidden bg-red-500/10 p-4 rounded-lg border border-red-500/20"></div>
+                <div id="signupSuccess" class="text-green-300 text-base mt-4 hidden bg-green-500/10 p-4 rounded-lg border border-green-500/20"></div>
             </div>
         </div>
 
         <!-- Email Verification View -->
-        <div id="verificationView" class="w-full max-w-md hidden">
-            <div class="bg-slate-800 rounded-lg shadow-2xl p-8 border border-slate-700">
-                <h2 class="text-2xl font-bold text-white mb-2">Verify Email</h2>
-                <p class="text-slate-400 mb-6">Enter the verification code sent to your email</p>
+        <div id="verificationView" class="w-full max-w-lg hidden">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl p-10 border border-slate-700 backdrop-blur-sm">
+                <h2 class="text-4xl font-bold text-white mb-3">Verify Email</h2>
+                <p class="text-slate-300 mb-8 text-lg">Enter the verification code sent to your email</p>
                 
-                <form id="verificationForm" class="space-y-4">
+                <form id="verificationForm" class="space-y-5">
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Verification Code</label>
-                        <input type="text" id="verificationCode" required maxlength="6" class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-center text-2xl tracking-widest" placeholder="000000">
+                        <label class="block text-base font-medium text-slate-200 mb-3">Verification Code</label>
+                        <input type="text" id="verificationCode" required maxlength="6" class="w-full px-5 py-4 bg-slate-700/50 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 text-center text-4xl tracking-widest transition-all" placeholder="000000">
                     </div>
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition duration-200">Verify</button>
+                    <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-semibold py-3 rounded-xl transition-all duration-200 transform hover:scale-105 text-lg">Verify</button>
                 </form>
-                <button onclick="switchToSignup(); return false;" class="w-full mt-4 text-slate-400 hover:text-slate-300 text-sm">← Back to Sign Up</button>
-                <div id="verificationError" class="text-red-400 text-sm mt-2 hidden"></div>
+                <button onclick="switchToSignup(); return false;" class="w-full mt-6 text-slate-300 hover:text-slate-200 text-base font-medium">← Back to Sign Up</button>
+                <div id="verificationError" class="text-red-300 text-base mt-4 hidden bg-red-500/10 p-4 rounded-lg border border-red-500/20"></div>
             </div>
         </div>
 
         <!-- Login View -->
-        <div id="loginView" class="w-full max-w-md hidden">
-            <div class="bg-slate-800 rounded-lg shadow-2xl p-8 border border-slate-700">
-                <h2 class="text-2xl font-bold text-white mb-2">Login</h2>
-                <p class="text-slate-400 mb-6">Access your code snippets</p>
+        <div id="loginView" class="w-full max-w-lg hidden">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl p-10 border border-slate-700 backdrop-blur-sm">
+                <h2 class="text-4xl font-bold text-white mb-3">Welcome Back</h2>
+                <p class="text-slate-300 mb-8 text-lg">Access your code snippets</p>
                 
-                <form id="loginForm" class="space-y-4">
+                <form id="loginForm" class="space-y-5">
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Email</label>
-                        <input type="email" id="loginEmail" required class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" placeholder="your@email.com">
+                        <label class="block text-base font-medium text-slate-200 mb-3">Email Address</label>
+                        <input type="email" id="loginEmail" required class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all" placeholder="your@email.com">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Password</label>
-                        <input type="password" id="loginPassword" required class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" placeholder="••••••••">
+                        <label class="block text-base font-medium text-slate-200 mb-3">Password</label>
+                        <input type="password" id="loginPassword" required class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all" placeholder="••••••••">
                     </div>
-                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition duration-200">Login</button>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold py-3 rounded-xl transition-all duration-200 transform hover:scale-105 text-lg">Login</button>
                 </form>
-                <p class="text-slate-400 text-sm mt-4 text-center">
-                    Don't have an account? <a href="#" onclick="switchToSignup(); return false;" class="text-blue-400 hover:text-blue-300">Sign Up</a>
+                <p class="text-slate-300 text-base mt-6 text-center">
+                    Don't have an account? <a href="#" onclick="switchToSignup(); return false;" class="text-blue-400 hover:text-blue-300 font-semibold">Sign Up</a>
                 </p>
-                <div id="loginError" class="text-red-400 text-sm mt-2 hidden"></div>
+                <div id="loginError" class="text-red-300 text-base mt-4 hidden bg-red-500/10 p-4 rounded-lg border border-red-500/20"></div>
             </div>
         </div>
     </div>
 
     <!-- Dashboard Container -->
-    <div id="dashboardContainer" class="hidden min-h-screen p-6">
+    <div id="dashboardContainer" class="hidden min-h-screen p-6 md:p-10">
         <!-- Header -->
-        <div class="max-w-6xl mx-auto">
-            <div class="flex justify-between items-center mb-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-12 bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-8 border border-slate-700">
                 <div>
-                    <h1 class="text-4xl font-bold text-white mb-1">DevVault</h1>
-                    <p class="text-slate-400">Welcome, <span id="userEmail" class="text-blue-400"></span></p>
+                    <h1 class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-2">DevVault</h1>
+                    <p class="text-slate-300 text-lg">Welcome, <span id="userEmail" class="text-blue-400 font-semibold"></span></p>
                 </div>
-                <button onclick="logout()" class="bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded-lg transition duration-200">Logout</button>
+                <button onclick="logout()" class="bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-semibold px-8 py-3 rounded-xl transition-all duration-200 transform hover:scale-105 text-base">Logout</button>
             </div>
 
             <!-- Create New Item Form -->
-            <div class="bg-slate-800 rounded-lg shadow-2xl p-6 border border-slate-700 mb-8">
-                <h2 class="text-2xl font-bold text-white mb-4">Add New Snippet</h2>
-                <form id="createItemForm" class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl p-10 border border-slate-700 mb-12">
+                <h2 class="text-4xl font-bold text-white mb-8">Add New Snippet</h2>
+                <form id="createItemForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-2">Title</label>
-                            <input type="text" id="itemTitle" required class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" placeholder="Snippet title">
+                            <label class="block text-base font-medium text-slate-200 mb-3">Title</label>
+                            <input type="text" id="itemTitle" required class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all" placeholder="Snippet title">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-slate-300 mb-2">Language</label>
-                            <select id="itemLanguage" required class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
+                            <label class="block text-base font-medium text-slate-200 mb-3">Language</label>
+                            <select id="itemLanguage" required class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all">
                                 <option value="javascript">JavaScript</option>
                                 <option value="python">Python</option>
                                 <option value="sql">SQL</option>
@@ -114,46 +114,46 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Code / Content</label>
-                        <textarea id="itemCode" required rows="6" class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 font-mono text-sm" placeholder="Paste your code here..."></textarea>
+                        <label class="block text-base font-medium text-slate-200 mb-3">Code / Content</label>
+                        <textarea id="itemCode" required rows="8" class="w-full px-5 py-4 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 font-mono transition-all" placeholder="Paste your code here..."></textarea>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Description (optional)</label>
-                        <input type="text" id="itemDescription" class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20" placeholder="Add a description...">
+                        <label class="block text-base font-medium text-slate-200 mb-3">Description (optional)</label>
+                        <input type="text" id="itemDescription" class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all" placeholder="Add a description...">
                     </div>
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-lg transition duration-200">Add Snippet</button>
+                    <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-semibold py-3 rounded-xl transition-all duration-200 transform hover:scale-105 text-lg">Add Snippet</button>
                 </form>
-                <div id="createError" class="text-red-400 text-sm mt-2 hidden"></div>
-                <div id="createSuccess" class="text-green-400 text-sm mt-2 hidden"></div>
+                <div id="createError" class="text-red-300 text-base mt-4 hidden bg-red-500/10 p-4 rounded-lg border border-red-500/20"></div>
+                <div id="createSuccess" class="text-green-300 text-base mt-4 hidden bg-green-500/10 p-4 rounded-lg border border-green-500/20"></div>
             </div>
 
             <!-- Items List -->
             <div>
-                <h2 class="text-2xl font-bold text-white mb-4">Your Snippets</h2>
-                <div id="itemsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h2 class="text-4xl font-bold text-white mb-8">Your Snippets</h2>
+                <div id="itemsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Items will be populated here -->
                 </div>
-                <div id="noItems" class="text-center text-slate-400 py-12">
-                    <p class="text-lg">No snippets yet. Create your first one!</p>
+                <div id="noItems" class="text-center text-slate-300 py-20 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border border-slate-700">
+                    <p class="text-2xl font-semibold">No snippets yet. Create your first one!</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Edit Modal -->
-    <div id="editModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50 p-4">
-        <div class="bg-slate-800 rounded-lg shadow-2xl p-8 border border-slate-700 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <h2 class="text-2xl font-bold text-white mb-4">Edit Snippet</h2>
-            <form id="editItemForm" class="space-y-4">
+    <div id="editModal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl shadow-2xl p-10 border border-slate-700 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <h2 class="text-4xl font-bold text-white mb-8">Edit Snippet</h2>
+            <form id="editItemForm" class="space-y-6">
                 <input type="hidden" id="editItemId">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Title</label>
-                        <input type="text" id="editItemTitle" required class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
+                        <label class="block text-base font-medium text-slate-200 mb-3">Title</label>
+                        <input type="text" id="editItemTitle" required class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Language</label>
-                        <select id="editItemLanguage" required class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
+                        <label class="block text-base font-medium text-slate-200 mb-3">Language</label>
+                        <select id="editItemLanguage" required class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all">
                             <option value="javascript">JavaScript</option>
                             <option value="python">Python</option>
                             <option value="sql">SQL</option>
@@ -166,19 +166,19 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-2">Code / Content</label>
-                    <textarea id="editItemCode" required rows="6" class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 font-mono text-sm"></textarea>
+                    <label class="block text-base font-medium text-slate-200 mb-3">Code / Content</label>
+                    <textarea id="editItemCode" required rows="8" class="w-full px-5 py-4 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 font-mono transition-all"></textarea>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-2">Description</label>
-                    <input type="text" id="editItemDescription" class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
+                    <label class="block text-base font-medium text-slate-200 mb-3">Description</label>
+                    <input type="text" id="editItemDescription" class="w-full px-5 py-3 bg-slate-700/50 border border-slate-600 rounded-xl text-white text-base focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all">
                 </div>
-                <div class="flex gap-2">
-                    <button type="submit" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 rounded-lg transition duration-200">Save Changes</button>
-                    <button type="button" onclick="closeEditModal()" class="flex-1 bg-slate-600 hover:bg-slate-700 text-white font-medium py-2 rounded-lg transition duration-200">Cancel</button>
+                <div class="flex gap-4">
+                    <button type="submit" class="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold py-3 rounded-xl transition-all duration-200 transform hover:scale-105 text-base">Save Changes</button>
+                    <button type="button" onclick="closeEditModal()" class="flex-1 bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3 rounded-xl transition-all duration-200">Cancel</button>
                 </div>
             </form>
-            <div id="editError" class="text-red-400 text-sm mt-2 hidden"></div>
+            <div id="editError" class="text-red-300 text-base mt-6 hidden bg-red-500/10 p-4 rounded-lg border border-red-500/20"></div>
         </div>
     </div>
 
