@@ -80,8 +80,13 @@ async function handleSignUp(e) {
     e.preventDefault();
     clearErrors('signup');
 
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
+    const signupData = {
+        name: document.getElementById('signupName').value,
+        email: document.getElementById('signupEmail').value,
+        password: document.getElementById('signupPassword').value,
+        phone_number: document.getElementById('signupPhoneNumber').value,
+        birthdate: document.getElementById('signupBirthdate').value,
+    };
 
     try {
         showLoading('signup');
@@ -89,7 +94,7 @@ async function handleSignUp(e) {
         const response = await fetch(`${CONFIG.api.endpoint}/auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify(signupData)
         });
 
         if (!response.ok) {
@@ -98,8 +103,8 @@ async function handleSignUp(e) {
         }
 
         // Store email for verification
-        localStorage.setItem('signupEmail', email);
-        localStorage.setItem('signupPassword', password);
+        localStorage.setItem('signupEmail', signupData.email);
+        localStorage.setItem('signupPassword', signupData.password);
 
         showSuccess('signup', 'Verification code sent to your email!');
         setTimeout(() => switchToVerification(), 1500);
