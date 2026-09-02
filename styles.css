@@ -18,9 +18,9 @@
     box-sizing: border-box;
 }
 
-html, body {
+html {
     width: 100%;
-    height: 100%;
+    overflow-y: auto;
 }
 
 body {
@@ -29,9 +29,11 @@ body {
     background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
     min-height: 100vh;
     line-height: 1.6;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-/* Auth Container - Full viewport centered */
+/* Auth Container - Full viewport centered with scrolling support */
 #authContainer {
     background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%) !important;
     position: fixed;
@@ -42,6 +44,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-y: auto;
 }
 
 /* Smooth transitions */
@@ -100,265 +103,35 @@ input:focus, textarea:focus, select:focus {
     animation: fadeIn 0.4s ease-out;
 }
 
-/* Glassmorphism Auth Cards */
-#authContainer > div {
-    animation: slideIn 0.5s ease-out;
+.pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
 }
 
-#authContainer > div > div {
-    background: rgba(30, 41, 59, 0.4) !important;
-    backdrop-filter: blur(10px) !important;
-    border: 1px solid rgba(71, 85, 105, 0.5) !important;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-}
-
-#authContainer > div > div:hover {
-    border-color: rgba(71, 85, 105, 0.7);
-}
-
-/* Enhanced Input Fields with Icon Support */
-input[type="email"],
-input[type="password"],
-input[type="text"],
-textarea,
-select {
-    background-color: rgba(30, 41, 59, 0.5);
-    border: 1px solid rgba(71, 85, 105, 0.5);
-    color: #e2e8f0;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-}
-
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="text"]:focus,
-textarea:focus,
-select:focus {
-    background-color: rgba(30, 41, 59, 0.7);
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-input::placeholder,
-textarea::placeholder {
-    color: rgba(148, 163, 184, 0.6);
-}
-
-/* Icon styling for inputs */
-input[type="email"],
-input[type="password"] {
-    padding-left: 2.75rem;
-}
-
-/* Item Cards - Enhanced */
-.item-card {
-    background: rgba(30, 41, 59, 0.4);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(71, 85, 105, 0.3);
-    border-radius: 1rem;
-    padding: 1.75rem;
-    transition: all 0.4s ease;
-    animation: slideIn 0.4s ease-out;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.item-card:hover {
-    border-color: #3b82f6;
-    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.25), 0 0 20px rgba(59, 130, 246, 0.15);
-    transform: translateY(-8px);
-    background: rgba(30, 59, 80, 0.5);
-}
-
-.item-card h3 {
-    color: #e2e8f0;
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    line-height: 1.3;
-}
-
-.item-card .language-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-.item-card .code-preview {
-    background: rgba(10, 15, 31, 0.8);
-    border: 1px solid rgba(71, 85, 105, 0.3);
-    border-radius: 0.75rem;
-    padding: 1rem;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
-    font-size: 0.95rem;
-    color: #cbd5e1;
-    max-height: 200px;
-    overflow-y: auto;
-    margin-bottom: 1rem;
-    white-space: pre-wrap;
-    word-break: break-word;
-    line-height: 1.5;
-}
-
-.item-card .description {
-    color: #cbd5e1;
-    font-size: 0.95rem;
-    margin-bottom: 1.25rem;
-    line-height: 1.6;
-    flex-grow: 1;
-}
-
-.item-card .actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-}
-
-.item-card button {
-    padding: 0.7rem 1.2rem;
-    border: none;
-    border-radius: 0.75rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    flex: 1;
-    transition: all 0.3s ease;
-}
-
-.item-card .edit-btn {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: white;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-.item-card .edit-btn:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-    transform: translateY(-2px);
-}
-
-.item-card .delete-btn {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    color: white;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-}
-
-.item-card .delete-btn:hover {
-    background: linear-gradient(135deg, #dc2626, #b91c1c);
-    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
-    transform: translateY(-2px);
-}
-
-/* Loading and status messages */
-.error-message,
-[id*="Error"] {
-    color: #fca5a5;
-    font-size: 0.95rem;
-    padding: 1rem;
-    background-color: rgba(239, 68, 68, 0.15);
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    border-radius: 0.75rem;
-    animation: slideIn 0.3s ease-out;
-}
-
-.success-message,
-[id*="Success"] {
-    color: #86efac;
-    font-size: 0.95rem;
-    padding: 1rem;
-    background-color: rgba(16, 185, 129, 0.15);
-    border: 1px solid rgba(16, 185, 129, 0.4);
-    border-radius: 0.75rem;
-    animation: slideIn 0.3s ease-out;
+/* Input focus effects */
+input:focus, textarea:focus {
+    border-color: #3b82f6 !important;
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.5);
-    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+    background: rgba(59, 130, 246, 0.4);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    background: rgba(59, 130, 246, 0.6);
 }
 
-/* Modal enhancement */
-#editModal {
-    backdrop-filter: blur(5px);
-}
-
-/* Loading button state */
-button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    transform: scale(1) !important;
-}
-
-/* Loading spinner */
-.spinner {
-    border: 2px solid #334155;
-    border-top: 2px solid #3b82f6;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 0.8s linear infinite;
-    display: inline-block;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Utility classes */
-.hidden {
-    display: none !important;
-}
-
-.opacity-50 {
-    opacity: 0.5;
-}
-
-.cursor-pointer {
-    cursor: pointer;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .item-card {
-        padding: 1rem;
-    }
-
-    .item-card h3 {
-        font-size: 1.125rem;
-    }
-
-    #dashboardContainer {
-        padding: 1rem;
-    }
+/* Firefox scrollbar */
+* {
+    scrollbar-color: rgba(59, 130, 246, 0.4) rgba(30, 41, 59, 0.3);
+    scrollbar-width: thin;
 }
