@@ -39,8 +39,8 @@ const passwordVisibility = {
     loginPassword: false,
 };
 
-// Global cache for items (used by Edit modal to avoid JSON.stringify in onclick)
-let itemsCache = [];
+// Global state tracking for latest loaded snippets
+let currentItems = [];
 
 // ============================================
 // Initialization
@@ -326,8 +326,8 @@ async function loadItems() {
 }
 
 function displayItems(items) {
-    // Cache items for use in edit modal
-    itemsCache = items;
+    // Store items in global state for event listeners
+    currentItems = items;
     
     const itemsList = document.getElementById('itemsList');
     const noItems = document.getElementById('noItems');
@@ -346,29 +346,43 @@ function displayItems(items) {
             ${item.description ? `<p class="description">${escapeHtml(item.description)}</p>` : ''}
             <div class="code-preview">${escapeHtml(item.code.substring(0, 200))}${item.code.length > 200 ? '...' : ''}</div>
             <div class="actions">
-                <button class="edit-btn" onclick="openEditModal('${item.id}')">Edit</button>
-                <button class="delete-btn" onclick="deleteItem('${item.id}')">Delete</button>
+                <button class="edit-btn" data-item-id="${escapeHtml(item.id)}">Edit</button>
+                <button class="delete-btn" data-item-id="${escapeHtml(item.id)}">Delete</button>
             </div>
         </div>
     `).join('');
+
+    // Attach event listeners to Edit buttons
+    document.querySelectorAll('.edit-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const itemId = button.dataset.itemId;
+            const item = currentItems.find(item => item.id === itemId);
+            if (item) {
+                openEditModal(item);
+            }
+        });
+    });
+
+    // Attach event listeners to Delete buttons
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const itemId = button.dataset.itemId;
+            deleteItem(itemId);
+        });
+    });
 }
 
-function openEditModal(itemId) {
-    // Find item from cache
-    const item = itemsCache.find(item => item.id === itemId);
-    
-    if (!item) {
-        console.error(`Item with ID ${itemId} not found in cache`);
-        return;
-    }
-    
-    // Safely populate form fields with fallback to empty strings
-    document.getElementById('editItemId').value = itemId || '';
+function openEditModal(item) {
+    // Populate form fields with fallback to empty strings
+    document.getElementById('editItemId').value = item.id || '';
     document.getElementById('editItemTitle').value = item.title || '';
     document.getElementById('editItemLanguage').value = item.language || '';
     document.getElementById('editItemCode').value = item.code || '';
     document.getElementById('editItemDescription').value = item.description || '';
     
+    // Toggle modal visibility
     document.getElementById('editModal').classList.remove('hidden');
     document.getElementById('editModal').classList.add('show');
 }
