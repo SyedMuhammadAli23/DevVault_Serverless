@@ -80,6 +80,55 @@ function setupEventListeners() {
 
     // Edit Item
     document.getElementById('editItemForm').addEventListener('submit', handleEditItem);
+
+    // Password visibility toggles
+    document.querySelectorAll('.toggle-password-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const fieldId = button.dataset.fieldId;
+            togglePasswordVisibility(fieldId, button);
+        });
+    });
+
+    // Navigation links
+    document.querySelectorAll('.switch-to-login-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToLogin();
+        });
+    });
+
+    document.querySelectorAll('.switch-to-signup-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToSignup();
+        });
+    });
+
+    document.querySelectorAll('.back-to-signup-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToSignup();
+        });
+    });
+
+    // Logout button
+    const logoutBtn = document.querySelector('.logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            logout();
+        });
+    }
+
+    // Close edit modal button
+    const closeEditModalBtn = document.querySelector('.close-edit-modal-btn');
+    if (closeEditModalBtn) {
+        closeEditModalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeEditModal();
+        });
+    }
 }
 
 function togglePasswordVisibility(fieldId, toggleButton) {
@@ -346,8 +395,8 @@ function displayItems(items) {
             ${item.description ? `<p class="description">${escapeHtml(item.description)}</p>` : ''}
             <div class="code-preview">${escapeHtml(item.code.substring(0, 200))}${item.code.length > 200 ? '...' : ''}</div>
             <div class="actions">
-                <button class="edit-btn" data-item-id="${escapeHtml(item.id)}">Edit</button>
-                <button class="delete-btn" data-item-id="${escapeHtml(item.id)}">Delete</button>
+                <button type="button" class="edit-btn" data-item-id="${escapeHtml(item.id)}">Edit</button>
+                <button type="button" class="delete-btn" data-item-id="${escapeHtml(item.id)}">Delete</button>
             </div>
         </div>
     `).join('');
