@@ -39,6 +39,9 @@ const passwordVisibility = {
     loginPassword: false,
 };
 
+// Global cache for items (used by Edit modal to avoid JSON.stringify in onclick)
+let itemsCache = [];
+
 // ============================================
 // Initialization
 // ============================================
@@ -323,6 +326,9 @@ async function loadItems() {
 }
 
 function displayItems(items) {
+    // Cache items for use in edit modal
+    itemsCache = items;
+    
     const itemsList = document.getElementById('itemsList');
     const noItems = document.getElementById('noItems');
 
@@ -340,18 +346,27 @@ function displayItems(items) {
             ${item.description ? `<p class="description">${escapeHtml(item.description)}</p>` : ''}
             <div class="code-preview">${escapeHtml(item.code.substring(0, 200))}${item.code.length > 200 ? '...' : ''}</div>
             <div class="actions">
-                <button class="edit-btn" onclick="openEditModal('${item.id}', ${JSON.stringify(item).replace(/'/g, '&#39;')})">Edit</button>
+                <button class="edit-btn" onclick="openEditModal('${item.id}')">Edit</button>
                 <button class="delete-btn" onclick="deleteItem('${item.id}')">Delete</button>
             </div>
         </div>
     `).join('');
 }
 
-function openEditModal(itemId, item) {
-    document.getElementById('editItemId').value = itemId;
-    document.getElementById('editItemTitle').value = item.title;
-    document.getElementById('editItemLanguage').value = item.language;
-    document.getElementById('editItemCode').value = item.code;
+function openEditModal(itemId) {
+    // Find item from cache
+    const item = itemsCache.find(item => item.id === itemId);
+    
+    if (!item) {
+        console.error(`Item with ID ${itemId} not found in cache`);
+        return;
+    }
+    
+    // Safely populate form fields with fallback to empty strings
+    document.getElementById('editItemId').value = itemId || '';
+    document.getElementById('editItemTitle').value = item.title || '';
+    document.getElementById('editItemLanguage').value = item.language || '';
+    document.getElementById('editItemCode').value = item.code || '';
     document.getElementById('editItemDescription').value = item.description || '';
     
     document.getElementById('editModal').classList.remove('hidden');
